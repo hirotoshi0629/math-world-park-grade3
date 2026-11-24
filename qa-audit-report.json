@@ -7,6 +7,12 @@
       "uniquePrompts": 600,
       "checkedEquationStatements": 502,
       "jump": 101,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 120,
       "cbtChoice": 64,
       "cbtTyped": 56
@@ -17,6 +23,12 @@
       "uniquePrompts": 1800,
       "checkedEquationStatements": 2006,
       "jump": 320,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 360,
       "cbtChoice": 109,
       "cbtTyped": 251
@@ -27,6 +39,12 @@
       "uniquePrompts": 2500,
       "checkedEquationStatements": 1838,
       "jump": 124,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 500,
       "cbtChoice": 252,
       "cbtTyped": 248
@@ -37,6 +55,12 @@
       "uniquePrompts": 2000,
       "checkedEquationStatements": 487,
       "jump": 396,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 400,
       "cbtChoice": 134,
       "cbtTyped": 266
@@ -47,6 +71,12 @@
       "uniquePrompts": 2400,
       "checkedEquationStatements": 1375,
       "jump": 360,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 480,
       "cbtChoice": 261,
       "cbtTyped": 219
@@ -57,6 +87,12 @@
       "uniquePrompts": 2000,
       "checkedEquationStatements": 1379,
       "jump": 335,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 400,
       "cbtChoice": 185,
       "cbtTyped": 215
@@ -67,6 +103,12 @@
       "uniquePrompts": 2600,
       "checkedEquationStatements": 3028,
       "jump": 428,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 520,
       "cbtChoice": 274,
       "cbtTyped": 246
@@ -77,6 +119,12 @@
       "uniquePrompts": 2400,
       "checkedEquationStatements": 2175,
       "jump": 390,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 480,
       "cbtChoice": 171,
       "cbtTyped": 309
@@ -87,6 +135,12 @@
       "uniquePrompts": 2000,
       "checkedEquationStatements": 852,
       "jump": 231,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 400,
       "cbtChoice": 125,
       "cbtTyped": 275
@@ -97,6 +151,12 @@
       "uniquePrompts": 2200,
       "checkedEquationStatements": 1328,
       "jump": 436,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 440,
       "cbtChoice": 231,
       "cbtTyped": 209
@@ -107,6 +167,12 @@
       "uniquePrompts": 300,
       "checkedEquationStatements": 250,
       "jump": 34,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 37,
       "cbtChoice": 21,
       "cbtTyped": 16
@@ -117,6 +183,12 @@
       "uniquePrompts": 2200,
       "checkedEquationStatements": 2270,
       "jump": 70,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 440,
       "cbtChoice": 273,
       "cbtTyped": 167
@@ -127,6 +199,12 @@
       "uniquePrompts": 2000,
       "checkedEquationStatements": 2462,
       "jump": 368,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 400,
       "cbtChoice": 215,
       "cbtTyped": 185
@@ -137,6 +215,12 @@
       "uniquePrompts": 2600,
       "checkedEquationStatements": 2599,
       "jump": 130,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 520,
       "cbtChoice": 280,
       "cbtTyped": 240
@@ -147,6 +231,12 @@
       "uniquePrompts": 2000,
       "checkedEquationStatements": 2002,
       "jump": 284,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 300,
       "cbtChoice": 102,
       "cbtTyped": 198
@@ -157,6 +247,12 @@
       "uniquePrompts": 600,
       "checkedEquationStatements": 1,
       "jump": 65,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 90,
       "cbtChoice": 33,
       "cbtTyped": 57
@@ -167,6 +263,12 @@
       "uniquePrompts": 1000,
       "checkedEquationStatements": 188,
       "jump": 188,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 200,
       "cbtChoice": 75,
       "cbtTyped": 125
@@ -177,6 +279,12 @@
       "uniquePrompts": 2800,
       "checkedEquationStatements": 526,
       "jump": 518,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 560,
       "cbtChoice": 220,
       "cbtTyped": 340
@@ -187,6 +295,12 @@
       "uniquePrompts": 3000,
       "checkedEquationStatements": 2585,
       "jump": 491,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 600,
       "cbtChoice": 315,
       "cbtTyped": 285
@@ -197,6 +311,12 @@
       "uniquePrompts": 3000,
       "checkedEquationStatements": 2110,
       "jump": 348,
+      "regular": {
+        "basic": 5,
+        "applied": 2,
+        "cbt": 3,
+        "jump": 1
+      },
       "cbt": 600,
       "cbtChoice": 343,
       "cbtTyped": 257
