@@ -14,14 +14,15 @@
         "jump": 1
       },
       "cbt": 120,
-      "cbtChoice": 64,
-      "cbtTyped": 56
+      "cbtChoice": 61,
+      "cbtTyped": 59,
+      "cbtApplied": 39
     },
     {
       "unit": 2,
       "questions": 1800,
       "uniquePrompts": 1800,
-      "checkedEquationStatements": 2006,
+      "checkedEquationStatements": 2106,
       "jump": 320,
       "regular": {
         "basic": 5,
@@ -30,14 +31,15 @@
         "jump": 1
       },
       "cbt": 360,
-      "cbtChoice": 109,
-      "cbtTyped": 251
+      "cbtChoice": 187,
+      "cbtTyped": 173,
+      "cbtApplied": 121
     },
     {
       "unit": 3,
       "questions": 2500,
       "uniquePrompts": 2500,
-      "checkedEquationStatements": 1838,
+      "checkedEquationStatements": 2003,
       "jump": 124,
       "regular": {
         "basic": 5,
@@ -47,13 +49,14 @@
       },
       "cbt": 500,
       "cbtChoice": 252,
-      "cbtTyped": 248
+      "cbtTyped": 248,
+      "cbtApplied": 165
     },
     {
       "unit": 4,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 487,
+      "checkedEquationStatements": 673,
       "jump": 396,
       "regular": {
         "basic": 5,
@@ -62,14 +65,15 @@
         "jump": 1
       },
       "cbt": 400,
-      "cbtChoice": 134,
-      "cbtTyped": 266
+      "cbtChoice": 186,
+      "cbtTyped": 214,
+      "cbtApplied": 144
     },
     {
       "unit": 5,
       "questions": 2400,
       "uniquePrompts": 2400,
-      "checkedEquationStatements": 1375,
+      "checkedEquationStatements": 1459,
       "jump": 360,
       "regular": {
         "basic": 5,
@@ -78,14 +82,15 @@
         "jump": 1
       },
       "cbt": 480,
-      "cbtChoice": 261,
-      "cbtTyped": 219
+      "cbtChoice": 243,
+      "cbtTyped": 237,
+      "cbtApplied": 156
     },
     {
       "unit": 6,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 1379,
+      "checkedEquationStatements": 1942,
       "jump": 335,
       "regular": {
         "basic": 5,
@@ -94,14 +99,15 @@
         "jump": 1
       },
       "cbt": 400,
-      "cbtChoice": 185,
-      "cbtTyped": 215
+      "cbtChoice": 200,
+      "cbtTyped": 200,
+      "cbtApplied": 132
     },
     {
       "unit": 7,
       "questions": 2600,
       "uniquePrompts": 2600,
-      "checkedEquationStatements": 3028,
+      "checkedEquationStatements": 3201,
       "jump": 428,
       "regular": {
         "basic": 5,
@@ -110,14 +116,15 @@
         "jump": 1
       },
       "cbt": 520,
-      "cbtChoice": 274,
-      "cbtTyped": 246
+      "cbtChoice": 262,
+      "cbtTyped": 258,
+      "cbtApplied": 173
     },
     {
       "unit": 8,
       "questions": 2400,
       "uniquePrompts": 2400,
-      "checkedEquationStatements": 2175,
+      "checkedEquationStatements": 2579,
       "jump": 390,
       "regular": {
         "basic": 5,
@@ -126,14 +133,15 @@
         "jump": 1
       },
       "cbt": 480,
-      "cbtChoice": 171,
-      "cbtTyped": 309
+      "cbtChoice": 164,
+      "cbtTyped": 316,
+      "cbtApplied": 159
     },
     {
       "unit": 9,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 852,
+      "checkedEquationStatements": 783,
       "jump": 231,
       "regular": {
         "basic": 5,
@@ -142,14 +150,15 @@
         "jump": 1
       },
       "cbt": 400,
-      "cbtChoice": 125,
-      "cbtTyped": 275
+      "cbtChoice": 197,
+      "cbtTyped": 203,
+      "cbtApplied": 122
     },
     {
       "unit": 10,
       "questions": 2200,
       "uniquePrompts": 2200,
-      "checkedEquationStatements": 1328,
+      "checkedEquationStatements": 1482,
       "jump": 436,
       "regular": {
         "basic": 5,
@@ -158,14 +167,15 @@
         "jump": 1
       },
       "cbt": 440,
-      "cbtChoice": 231,
-      "cbtTyped": 209
+      "cbtChoice": 129,
+      "cbtTyped": 311,
+      "cbtApplied": 156
     },
     {
       "unit": 11,
       "questions": 300,
       "uniquePrompts": 300,
-      "checkedEquationStatements": 250,
+      "checkedEquationStatements": 255,
       "jump": 34,
       "regular": {
         "basic": 5,
@@ -174,14 +184,15 @@
         "jump": 1
       },
       "cbt": 37,
-      "cbtChoice": 21,
-      "cbtTyped": 16
+      "cbtChoice": 20,
+      "cbtTyped": 17,
+      "cbtApplied": 10
     },
     {
       "unit": 12,
       "questions": 2200,
       "uniquePrompts": 2200,
-      "checkedEquationStatements": 2270,
+      "checkedEquationStatements": 2389,
       "jump": 70,
       "regular": {
         "basic": 5,
@@ -190,14 +201,15 @@
         "jump": 1
       },
       "cbt": 440,
-      "cbtChoice": 273,
-      "cbtTyped": 167
+      "cbtChoice": 217,
+      "cbtTyped": 223,
+      "cbtApplied": 119
     },
     {
       "unit": 13,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 2462,
+      "checkedEquationStatements": 2500,
       "jump": 368,
       "regular": {
         "basic": 5,
@@ -206,8 +218,9 @@
         "jump": 1
       },
       "cbt": 400,
-      "cbtChoice": 215,
-      "cbtTyped": 185
+      "cbtChoice": 202,
+      "cbtTyped": 198,
+      "cbtApplied": 138
     },
     {
       "unit": 14,
@@ -222,8 +235,9 @@
         "jump": 1
       },
       "cbt": 520,
-      "cbtChoice": 280,
-      "cbtTyped": 240
+      "cbtChoice": 267,
+      "cbtTyped": 253,
+      "cbtApplied": 176
     },
     {
       "unit": 15,
@@ -238,8 +252,9 @@
         "jump": 1
       },
       "cbt": 300,
-      "cbtChoice": 102,
-      "cbtTyped": 198
+      "cbtChoice": 150,
+      "cbtTyped": 150,
+      "cbtApplied": 94
     },
     {
       "unit": 16,
@@ -255,13 +270,14 @@
       },
       "cbt": 90,
       "cbtChoice": 45,
-      "cbtTyped": 45
+      "cbtTyped": 45,
+      "cbtApplied": 0
     },
     {
       "unit": 17,
       "questions": 1000,
       "uniquePrompts": 1000,
-      "checkedEquationStatements": 188,
+      "checkedEquationStatements": 251,
       "jump": 188,
       "regular": {
         "basic": 5,
@@ -270,14 +286,15 @@
         "jump": 1
       },
       "cbt": 200,
-      "cbtChoice": 75,
-      "cbtTyped": 125
+      "cbtChoice": 61,
+      "cbtTyped": 139,
+      "cbtApplied": 63
     },
     {
       "unit": 18,
       "questions": 2800,
       "uniquePrompts": 2800,
-      "checkedEquationStatements": 526,
+      "checkedEquationStatements": 712,
       "jump": 518,
       "regular": {
         "basic": 5,
@@ -286,14 +303,15 @@
         "jump": 1
       },
       "cbt": 560,
-      "cbtChoice": 220,
-      "cbtTyped": 340
+      "cbtChoice": 191,
+      "cbtTyped": 369,
+      "cbtApplied": 186
     },
     {
       "unit": 19,
       "questions": 3000,
       "uniquePrompts": 3000,
-      "checkedEquationStatements": 2585,
+      "checkedEquationStatements": 2678,
       "jump": 491,
       "regular": {
         "basic": 5,
@@ -302,14 +320,15 @@
         "jump": 1
       },
       "cbt": 600,
-      "cbtChoice": 315,
-      "cbtTyped": 285
+      "cbtChoice": 300,
+      "cbtTyped": 300,
+      "cbtApplied": 199
     },
     {
       "unit": 20,
       "questions": 3000,
       "uniquePrompts": 3000,
-      "checkedEquationStatements": 2110,
+      "checkedEquationStatements": 2100,
       "jump": 348,
       "regular": {
         "basic": 5,
@@ -318,8 +337,9 @@
         "jump": 1
       },
       "cbt": 600,
-      "cbtChoice": 343,
-      "cbtTyped": 257
+      "cbtChoice": 301,
+      "cbtTyped": 299,
+      "cbtApplied": 177
     }
   ],
   "kinds": {
@@ -334,13 +354,13 @@
   "scopeFlags": [],
   "answerIssues": [],
   "explanationAnswerFlags": [],
-  "directEquationChecks": 7540,
+  "directEquationChecks": 6718,
   "directEquationIssues": [],
   "sessionAuditFailures": [],
   "choiceBalanceFailures": [],
   "answerFormatChoices": {
-    "time": 130,
-    "remainder": 225,
+    "time": 140,
+    "remainder": 200,
     "packedRemainder": 0
   },
   "rolloverAudit": {

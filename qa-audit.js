@@ -29,15 +29,19 @@ for (let unit = 0; unit < 20; unit += 1) {
   if (cbt.length !== 10 || cbt.some((q) => q.kind !== 'cbt') || new Set(cbt.map((q) => q.id)).size !== 10) {
     summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT selection' });
   }
+  if (unit !== 15 && cbt.filter((q) => q.skill.startsWith('CBT・活用')).length < 3) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT set includes applied questions' });
+  if (unit !== 15 && regular.filter((q) => q.kind === 'cbt' && q.skill.startsWith('CBT・活用')).length < 1) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'regular set includes an applied CBT question' });
   if (unseenFirst.length !== 10 || unseenFirst.some((q) => seen.has(q.id))) {
     summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'unseen priority' });
   }
   const cbtItems = items.filter((q) => q.kind === 'cbt');
   const cbtChoiceCount = cbtItems.filter((q) => q.choices).length;
   const cbtTypedCount = cbtItems.length - cbtChoiceCount;
+  const cbtAppliedCount = cbtItems.filter((q) => q.skill.startsWith('CBT・活用')).length;
+  if (unit !== 15 && cbtAppliedCount < cbtItems.length * 0.15) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT applied-question coverage', cbtApplied: cbtAppliedCount, cbtTotal: cbtItems.length });
   const jumpItems = items.filter((q) => q.tier === 'jump');
   if (!jumpItems.length || jumpItems.some((q) => q.kind !== 'applied')) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'jump coverage' });
-  const unitSummary = { unit: unit + 1, questions: items.length, uniquePrompts: engineAudit.uniquePrompts, checkedEquationStatements: engineAudit.checkedEquationStatements, jump: jumpItems.length, regular: { basic: regular.filter((q) => q.kind === 'basic').length, applied: regular.filter((q) => q.kind === 'applied').length, cbt: regular.filter((q) => q.kind === 'cbt').length, jump: regular.filter((q) => q.tier === 'jump').length }, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount };
+  const unitSummary = { unit: unit + 1, questions: items.length, uniquePrompts: engineAudit.uniquePrompts, checkedEquationStatements: engineAudit.checkedEquationStatements, jump: jumpItems.length, regular: { basic: regular.filter((q) => q.kind === 'basic').length, applied: regular.filter((q) => q.kind === 'applied').length, cbt: regular.filter((q) => q.kind === 'cbt').length, jump: regular.filter((q) => q.tier === 'jump').length }, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount, cbtApplied: cbtAppliedCount };
   summary.units.push(unitSummary);
   if ([2, 4, 9].includes(unit + 1) && (cbtChoiceCount / cbtItems.length < 0.2 || cbtTypedCount / cbtItems.length < 0.2)) summary.choiceBalanceFailures.push({ unit: unit + 1, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount });
   summary.total += items.length;
