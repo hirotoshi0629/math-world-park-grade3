@@ -9,7 +9,7 @@ vm.runInThisContext(fs.readFileSync(__dirname + '/question-engine.js', 'utf8'), 
 vm.runInThisContext(fs.readFileSync(__dirname + '/progress-store.js', 'utf8'), { filename: 'progress-store.js' });
 
 const prohibited = [/以上|以下|未満/, /被除数|乗数|除数|被乗数/, /undefined|NaN|\[object Object\]/, /\d+十|14十/, /\bPは\b/];
-const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, tiers: { jump: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], choiceOrderFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
+const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, tiers: { jump: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], choiceOrderFailures: [], answerModePromptFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
 const stableShuffle = (items) => [...items];
 const indexSource = fs.readFileSync(__dirname + '/index.html', 'utf8');
 const triangleDescription = /\['三角形','図形アトリエ','([^']+)'\]/.exec(indexSource)?.[1] || '';
@@ -65,6 +65,8 @@ for (let unit = 0; unit < 20; unit += 1) {
       }
     }
     const content = [q.skill, q.prompt, q.hint, q.explain, ...(q.choices || []).map((x) => x[1])].join(' ');
+    if (!q.choices && /選びましょう|選びなさい|選んでください|どれが正しい|正しいものは|正しい考え方は/.test(q.prompt)) summary.answerModePromptFailures.push({ unit: unit + 1, id: q.id, prompt: q.prompt });
+    if (q.choices && /答えを入力|分子と分母を入力|答えを書きましょう/.test(q.prompt)) summary.answerModePromptFailures.push({ unit: unit + 1, id: q.id, prompt: q.prompt });
     if (unit === 16 && /(?:こ分|つ分)/.test(q.explain) && !/〔F1:\d+〕/.test(q.explain)) summary.explanationAnswerFlags.push({ unit: unit + 1, id: q.id, issue: 'fraction explanation does not name the one-part fraction', explain: q.explain });
     const direct = /^([\d,().＋－×÷+\- ]+)＝[？?]$/.exec(q.prompt);
     if (direct && /^-?[\d,]+(?:\.\d+)?$/.test(q.answer)) {
@@ -172,4 +174,4 @@ summary.compositeInputAudit = {
   ordinaryTextStaysText: window.questionEngine.parseCompositeAnswer('二等辺三角形') === null,
 };
 console.log(JSON.stringify(summary, null, 2));
-if (summary.total !== 40000 || summary.phraseFlags.length || summary.scopeFlags.length || summary.answerIssues.length || summary.explanationAnswerFlags.length || summary.directEquationIssues.length || summary.sessionAuditFailures.length || summary.choiceBalanceFailures.length || summary.choiceOrderFailures.length || Object.values(summary.rolloverAudit).some((ok) => !ok) || Object.values(summary.progressAudit).some((ok) => !ok) || Object.values(summary.feedbackAudit).some((ok) => !ok) || Object.values(summary.persistenceAudit).some((ok) => !ok) || Object.values(summary.compositeInputAudit).some((ok) => !ok)) process.exitCode = 1;
+if (summary.total !== 40000 || summary.phraseFlags.length || summary.scopeFlags.length || summary.answerIssues.length || summary.explanationAnswerFlags.length || summary.directEquationIssues.length || summary.sessionAuditFailures.length || summary.choiceBalanceFailures.length || summary.choiceOrderFailures.length || summary.answerModePromptFailures.length || Object.values(summary.rolloverAudit).some((ok) => !ok) || Object.values(summary.progressAudit).some((ok) => !ok) || Object.values(summary.feedbackAudit).some((ok) => !ok) || Object.values(summary.persistenceAudit).some((ok) => !ok) || Object.values(summary.compositeInputAudit).some((ok) => !ok)) process.exitCode = 1;

@@ -269,8 +269,8 @@
         "jump": 1
       },
       "cbt": 90,
-      "cbtChoice": 45,
-      "cbtTyped": 45,
+      "cbtChoice": 46,
+      "cbtTyped": 44,
       "cbtApplied": 86
     },
     {
@@ -359,6 +359,7 @@
   "sessionAuditFailures": [],
   "choiceBalanceFailures": [],
   "choiceOrderFailures": [],
+  "answerModePromptFailures": [],
   "answerFormatChoices": {
     "time": 140,
     "remainder": 200,

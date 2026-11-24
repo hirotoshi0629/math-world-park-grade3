@@ -149,7 +149,7 @@
      else if(family===1){const high=Math.max(p,q)+1,low=Math.min(p,q),distance=high-low;prompt=`0から1までを${d}等分した数直線で、青い点は0から${low}つ目、赤い点は0から${high}つ目です。青い点から赤い点までの長さは、1の何分のいくつですか。`;answer=`F${distance}:${d}`;hint=`1目盛り分は${f(1,d)}。2つの点の目盛りの数の差を考えよう。`;explain=`1目盛り分は${f(1,d)}です。赤い点と青い点の間は${high}－${low}＝${distance}目盛り分なので、長さは${f(1,d)}が${distance}こ分、つまり${f(distance,d)}です.`}
      else{const total=p+q;prompt=`ケーキ1こを同じ大きさに${d}等分しました。Aさんは${p}切れ、Bさんは${q}切れ食べました。2人が食べた量の表し方と理由が正しいものを選びましょう。`;answer=`F${total}:${d}`;hint=`1切れ分はケーキ全体の${f(1,d)}。食べた切れ数を合わせよう。`;explain=`1切れ分は${f(1,d)}です。${p}切れと${q}切れで${total}切れ食べたので、${f(1,d)}が${total}こ分、答えは${f(total,d)}です.`}
      const question=make(u,kind,i,skill,prompt,answer,hint,explain,extra);
-     if(i%2===1)return question;
+     if(i%2===1){if(family===2)question.prompt=`ケーキ1こを同じ大きさに${d}等分しました。Aさんは${p}切れ、Bさんは${q}切れ食べました。2人が食べたケーキの量を、分数で表しましょう。`;return question;}
      if(family===2){const total=p+q,right=`${f(total,d)}。${f(1,d)}が${total}こ分だから。`,wrong=[`${f(total,2*d)}。分母も足すから。`,`${f(Math.abs(p-q),d)}。食べた数をひくから。`,`${f(p,d)}。Aさんが食べた数だけだから。`];return choices(question,right,wrong,i)}
      const m=/^F(\d+):(\d+)$/.exec(answer);return fractionChoices(question,Number(m[1]),Number(m[2]),i)
     }
