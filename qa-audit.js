@@ -61,6 +61,7 @@ for (let unit = 0; unit < 20; unit += 1) {
       }
     }
     const content = [q.skill, q.prompt, q.hint, q.explain, ...(q.choices || []).map((x) => x[1])].join(' ');
+    if (unit === 16 && /(?:こ分|つ分)/.test(q.explain) && !/〔F1:\d+〕/.test(q.explain)) summary.explanationAnswerFlags.push({ unit: unit + 1, id: q.id, issue: 'fraction explanation does not name the one-part fraction', explain: q.explain });
     const direct = /^([\d,().＋－×÷+\- ]+)＝[？?]$/.exec(q.prompt);
     if (direct && /^-?[\d,]+(?:\.\d+)?$/.test(q.answer)) {
       const computed = window.questionEngine.evaluateExpression(direct[1]);
