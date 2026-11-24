@@ -10,6 +10,7 @@
  const comma=n=>Number(n).toLocaleString('ja-JP');
  function make(unit,kind,i,skill,prompt,answer,hint,explain,extra={}){return {id:`u${unit}g${kind[0]}${i+1}`,kind,skill,prompt:String(prompt),answer:String(answer),hint,explain,...extra}}
  function choices(q,right,wrong,i){const opts=[];for(const x of [right,...wrong])if(x!==undefined&&!opts.includes(String(x)))opts.push(String(x));let step=1;while(opts.length<4){const x=Number(right)+step;if(Number.isFinite(x)&&!opts.includes(String(x)))opts.push(String(x));step++}const vals=opts.slice(0,4),shift=rand(i,q.id.length,4),c=vals.map((v,j)=>[String.fromCharCode(65+mod(j+shift,4)),v]);return {...q,answer:c.find(x=>x[1]===String(right))[0],choices:c,correctValue:String(right)}}
+ function fractionChoices(q,n,d,i){const right=`F${n}:${d}`,value=canonicalChoice(right),candidates=[[n-1,d],[n+1,d],[n,d+1],[n,d-1],[n+2,d+1],[Math.max(0,n-2),d]];const wrong=[],seen=new Set([value]);for(const [a,b] of candidates){if(b<1||a<0)continue;const v=`F${a}:${b}`,key=canonicalChoice(v);if(!seen.has(key)){seen.add(key);wrong.push(v);if(wrong.length===3)break}}for(let den=d+2;wrong.length<3;den++){for(let num=0;num<=den&&wrong.length<3;num++){const v=`F${num}:${den}`,key=canonicalChoice(v);if(!seen.has(key)){seen.add(key);wrong.push(v)}}}return choices(q,right,wrong,i)}
  function autoChoice(q,i){
   if(q.kind!=='cbt'||i%2||q.choices)return q;
   const answer=String(q.answer),time=/^(\d+)時(\d+)分$/.exec(answer);
@@ -134,7 +135,19 @@
    case 15:{const x=1+rand(n,u+5,9),y=1+rand(n,u+11,9),z=1+rand(n,u+17,9),op=t%2?'-':'+';skill=['まとまりを考える','計算のきまり','分配の考え方','文章題','式をまとめる','計算の工夫'][t];
     if(t===3){const people=y+z;prompt=`${people}人に${x}こずつ配ります。${y}人に配ったあと、残りの人にも配ると全部で何こですか。`;answer=people*x;hint=`${x}こずつ配る人数は全部で何人かな。`;explain=`${x}×${y}＋${x}×${z}＝${answer}こです.`;extra.unit='こ'}
     else if(op==='-'&&t===5){const a=Math.max(y,z),b=Math.min(y,z);prompt=`${x}×（${a}＋${b}）－${x}×${b}＝？`;answer=x*a;hint=`かっこの中を先に考え、${x}×${b}をひこう。`;explain=`${x}×（${a}＋${b}）－${x}×${b}＝${x}×${a}＝${answer}です.`}else{const a=op==='-'?Math.max(y,z):y,b=op==='-'?Math.min(y,z):z;prompt=`${x}×${a} ${op} ${x}×${b}＝？`;answer=x*(a+(op==='+'?b:-b));hint=`${x}が${a}こ分と${b}こ分あると考えよう。`;explain=`${x}×${a} ${op} ${x}×${b}＝${answer}です.`}break;}
-   case 16:{let d=2+rand(n,u+5,9),p=1+rand(n,u+11,d-1),q=1+rand(n,u+17,d-1);skill=['分数の表し方','分数の大きさ','分数のたし算','分数のひき算','分数と1','分数の文章題'][t];
+   case 16:{
+    if(kind==='cbt'){
+     const family=Math.floor(i/2)%3,d=[6,8,10][rand(i,u+41,3)],p=1+rand(i,u+42,d-3),q=1+rand(i,u+43,d-p-1);let prompt,answer,hint,explain;
+     skill=['CBT・分数の活用','CBT・数直線の読み取り','CBT・考え方の見直し'][family];
+     if(family===0){const remain=d-p-q;prompt=`1mのテープを${d}等分しました。工作に${p}こ分、飾りにさらに${q}こ分使いました。テープは全体の何分のいくつ残っていますか。`;answer=`F${remain}:${d}`;hint=`使った分数を合わせてから、全体の1をひこう。1つ分は${f(1,d)}です。`;explain=`1つ分は${f(1,d)}mです。使った量は${f(1,d)}が${p+q}こ分なので${f(p+q,d)}m。1mからひくと、残りは${f(1,d)}が${remain}こ分、つまり${f(remain,d)}mです。`;extra.unit='m'}
+     else if(family===1){const high=Math.max(p,q)+1,low=Math.min(p,q),distance=high-low;prompt=`0から1までを${d}等分した数直線で、青い点は0から${low}つ目、赤い点は0から${high}つ目です。青い点から赤い点までの長さは、1の何分のいくつですか。`;answer=`F${distance}:${d}`;hint=`1目盛り分は${f(1,d)}。2つの点の目盛りの数の差を考えよう。`;explain=`1目盛り分は${f(1,d)}です。赤い点と青い点の間は${high}－${low}＝${distance}目盛り分なので、長さは${f(1,d)}が${distance}こ分、つまり${f(distance,d)}です.`}
+     else{const total=p+q;prompt=`ケーキ1こを同じ大きさに${d}等分しました。Aさんは${p}切れ、Bさんは${q}切れ食べました。2人が食べた量の表し方と理由が正しいものを選びましょう。`;answer=`F${total}:${d}`;hint=`1切れ分はケーキ全体の${f(1,d)}。食べた切れ数を合わせよう。`;explain=`1切れ分は${f(1,d)}です。${p}切れと${q}切れで${total}切れ食べたので、${f(1,d)}が${total}こ分、答えは${f(total,d)}です.`}
+     const question=make(u,kind,i,skill,prompt,answer,hint,explain,extra);
+     if(i%2===1)return question;
+     if(family===2){const total=p+q,right=`${f(total,d)}。${f(1,d)}が${total}こ分だから。`,wrong=[`${f(total,2*d)}。分母も足すから。`,`${f(Math.abs(p-q),d)}。食べた数をひくから。`,`${f(p,d)}。Aさんが食べた数だけだから。`];return choices(question,right,wrong,i)}
+     const m=/^F(\d+):(\d+)$/.exec(answer);return fractionChoices(question,Number(m[1]),Number(m[2]),i)
+    }
+    let d=2+rand(n,u+5,9),p=1+rand(n,u+11,d-1),q=1+rand(n,u+17,d-1);skill=['分数の表し方','分数の大きさ','分数のたし算','分数のひき算','分数と1','分数の文章題'][t];
     if(t===0){prompt=`1mを${d}等分した長さを${p}こ分集めました。何mですか。`;answer=`F${p}:${d}`;hint=`1mの${d}等分が${p}こ分だよ。`;explain=`1mを${d}等分した1つ分は${f(1,d)}mです。その${p}こ分は${f(p,d)}mです.`;extra.unit='m'}
     else if(t===1){const big=Math.max(p,q),small=Math.min(p,q);prompt=`同じ分母の分数${f(big,d)}と${f(small,d)}では、どちらが大きいですか。`;answer=`F${big}:${d}`;hint='分母が同じなので、分子を比べよう。';explain=`${f(big,d)}は${f(1,d)}が${big}こ分、${f(small,d)}は${f(1,d)}が${small}こ分です。1つ分の大きさは同じなので、${f(1,d)}が多い${f(big,d)}のほうが大きいです.`}
     else if(t===2){let sum=Math.min(d,p+q);if(sum-p<1){p=d-1;q=1;sum=d}prompt=`${f(p,d)}＋${f(sum-p,d)}＝？`;answer=`F${sum}:${d}`;hint='同じ大きさの何等分を何こ分合わせるか考えよう。';explain=`${f(p,d)}は${f(1,d)}が${p}こ分、${f(sum-p,d)}は${f(1,d)}が${sum-p}こ分です。合わせると${f(1,d)}が${sum}こ分なので、答えは${f(sum,d)}です.`}

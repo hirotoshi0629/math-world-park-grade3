@@ -129,6 +129,8 @@ summary.progressAudit = {
 summary.feedbackAudit = {
   choiceShowsAnswerText: window.questionEngine.correctValueForDisplay({ answer: 'C', choices: [['A', '3'], ['B', '4'], ['C', '5'], ['D', '6']] }) === '5',
   fractionUsesStackableMarkup: window.questionEngine.correctValueForDisplay({ answer: 'F3:4' }) === '〔F3:4〕',
+  bareFractionChoiceTokensAreRenderedVertically: indexSource.includes(String.raw`\bF(\d+):(\d+)\b`),
+  fractionCbtHasReasoningAndInputFormats: (() => { const qs = window.questionEngine.generate(15).filter((q) => q.kind === 'cbt'); return new Set(qs.map((q) => q.skill)).size >= 3 && qs.some((q) => q.choices) && qs.some((q) => !q.choices); })(),
   unitIsIncluded: window.questionEngine.correctValueForDisplay({ answer: '12', unit: 'kg' }) === '12kg',
   alreadyIncludedUnitIsNotRepeated: window.questionEngine.correctValueForDisplay({ answer: '3kg', unit: 'kg' }) === '3kg',
 };

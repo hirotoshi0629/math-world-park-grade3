@@ -254,8 +254,8 @@
         "jump": 1
       },
       "cbt": 90,
-      "cbtChoice": 33,
-      "cbtTyped": 57
+      "cbtChoice": 45,
+      "cbtTyped": 45
     },
     {
       "unit": 17,
@@ -334,7 +334,7 @@
   "scopeFlags": [],
   "answerIssues": [],
   "explanationAnswerFlags": [],
-  "directEquationChecks": 7572,
+  "directEquationChecks": 7540,
   "directEquationIssues": [],
   "sessionAuditFailures": [],
   "choiceBalanceFailures": [],
@@ -356,6 +356,8 @@
   "feedbackAudit": {
     "choiceShowsAnswerText": true,
     "fractionUsesStackableMarkup": true,
+    "bareFractionChoiceTokensAreRenderedVertically": true,
+    "fractionCbtHasReasoningAndInputFormats": true,
     "unitIsIncluded": true,
     "alreadyIncludedUnitIsNotRepeated": true
   },
