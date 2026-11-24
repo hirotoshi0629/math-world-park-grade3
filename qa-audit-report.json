@@ -5,7 +5,8 @@
       "unit": 1,
       "questions": 600,
       "uniquePrompts": 600,
-      "checkedEquationStatements": 485,
+      "checkedEquationStatements": 502,
+      "jump": 101,
       "cbt": 120,
       "cbtChoice": 64,
       "cbtTyped": 56
@@ -14,16 +15,18 @@
       "unit": 2,
       "questions": 1800,
       "uniquePrompts": 1800,
-      "checkedEquationStatements": 1999,
+      "checkedEquationStatements": 2006,
+      "jump": 320,
       "cbt": 360,
-      "cbtChoice": 102,
-      "cbtTyped": 258
+      "cbtChoice": 109,
+      "cbtTyped": 251
     },
     {
       "unit": 3,
       "questions": 2500,
       "uniquePrompts": 2500,
       "checkedEquationStatements": 1838,
+      "jump": 124,
       "cbt": 500,
       "cbtChoice": 252,
       "cbtTyped": 248
@@ -32,97 +35,108 @@
       "unit": 4,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 91,
+      "checkedEquationStatements": 487,
+      "jump": 396,
       "cbt": 400,
-      "cbtChoice": 107,
-      "cbtTyped": 293
+      "cbtChoice": 134,
+      "cbtTyped": 266
     },
     {
       "unit": 5,
       "questions": 2400,
       "uniquePrompts": 2400,
-      "checkedEquationStatements": 1193,
+      "checkedEquationStatements": 1375,
+      "jump": 360,
       "cbt": 480,
-      "cbtChoice": 243,
-      "cbtTyped": 237
+      "cbtChoice": 261,
+      "cbtTyped": 219
     },
     {
       "unit": 6,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 1249,
+      "checkedEquationStatements": 1379,
+      "jump": 335,
       "cbt": 400,
-      "cbtChoice": 173,
-      "cbtTyped": 227
+      "cbtChoice": 185,
+      "cbtTyped": 215
     },
     {
       "unit": 7,
       "questions": 2600,
       "uniquePrompts": 2600,
-      "checkedEquationStatements": 2600,
+      "checkedEquationStatements": 3028,
+      "jump": 428,
       "cbt": 520,
-      "cbtChoice": 252,
-      "cbtTyped": 268
+      "cbtChoice": 274,
+      "cbtTyped": 246
     },
     {
       "unit": 8,
       "questions": 2400,
       "uniquePrompts": 2400,
-      "checkedEquationStatements": 1198,
+      "checkedEquationStatements": 2175,
+      "jump": 390,
       "cbt": 480,
-      "cbtChoice": 161,
-      "cbtTyped": 319
+      "cbtChoice": 171,
+      "cbtTyped": 309
     },
     {
       "unit": 9,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 950,
+      "checkedEquationStatements": 852,
+      "jump": 231,
       "cbt": 400,
-      "cbtChoice": 111,
-      "cbtTyped": 289
+      "cbtChoice": 125,
+      "cbtTyped": 275
     },
     {
       "unit": 10,
       "questions": 2200,
       "uniquePrompts": 2200,
-      "checkedEquationStatements": 1088,
+      "checkedEquationStatements": 1328,
+      "jump": 436,
       "cbt": 440,
-      "cbtChoice": 232,
-      "cbtTyped": 208
+      "cbtChoice": 231,
+      "cbtTyped": 209
     },
     {
       "unit": 11,
       "questions": 300,
       "uniquePrompts": 300,
-      "checkedEquationStatements": 204,
+      "checkedEquationStatements": 250,
+      "jump": 34,
       "cbt": 37,
-      "cbtChoice": 20,
-      "cbtTyped": 17
+      "cbtChoice": 21,
+      "cbtTyped": 16
     },
     {
       "unit": 12,
       "questions": 2200,
       "uniquePrompts": 2200,
-      "checkedEquationStatements": 2200,
+      "checkedEquationStatements": 2270,
+      "jump": 70,
       "cbt": 440,
-      "cbtChoice": 214,
-      "cbtTyped": 226
+      "cbtChoice": 273,
+      "cbtTyped": 167
     },
     {
       "unit": 13,
       "questions": 2000,
       "uniquePrompts": 2000,
-      "checkedEquationStatements": 2537,
+      "checkedEquationStatements": 2462,
+      "jump": 368,
       "cbt": 400,
-      "cbtChoice": 191,
-      "cbtTyped": 209
+      "cbtChoice": 215,
+      "cbtTyped": 185
     },
     {
       "unit": 14,
       "questions": 2600,
       "uniquePrompts": 2600,
       "checkedEquationStatements": 2599,
+      "jump": 130,
       "cbt": 520,
       "cbtChoice": 280,
       "cbtTyped": 240
@@ -132,54 +146,60 @@
       "questions": 2000,
       "uniquePrompts": 2000,
       "checkedEquationStatements": 2002,
+      "jump": 284,
       "cbt": 300,
-      "cbtChoice": 52,
-      "cbtTyped": 248
+      "cbtChoice": 102,
+      "cbtTyped": 198
     },
     {
       "unit": 16,
       "questions": 600,
       "uniquePrompts": 600,
       "checkedEquationStatements": 1,
+      "jump": 65,
       "cbt": 90,
-      "cbtChoice": 31,
-      "cbtTyped": 59
+      "cbtChoice": 33,
+      "cbtTyped": 57
     },
     {
       "unit": 17,
       "questions": 1000,
       "uniquePrompts": 1000,
-      "checkedEquationStatements": 0,
+      "checkedEquationStatements": 188,
+      "jump": 188,
       "cbt": 200,
-      "cbtChoice": 78,
-      "cbtTyped": 122
+      "cbtChoice": 75,
+      "cbtTyped": 125
     },
     {
       "unit": 18,
       "questions": 2800,
       "uniquePrompts": 2800,
-      "checkedEquationStatements": 8,
+      "checkedEquationStatements": 526,
+      "jump": 518,
       "cbt": 560,
-      "cbtChoice": 219,
-      "cbtTyped": 341
+      "cbtChoice": 220,
+      "cbtTyped": 340
     },
     {
       "unit": 19,
       "questions": 3000,
       "uniquePrompts": 3000,
-      "checkedEquationStatements": 2506,
+      "checkedEquationStatements": 2585,
+      "jump": 491,
       "cbt": 600,
-      "cbtChoice": 300,
-      "cbtTyped": 300
+      "cbtChoice": 315,
+      "cbtTyped": 285
     },
     {
       "unit": 20,
       "questions": 3000,
       "uniquePrompts": 3000,
-      "checkedEquationStatements": 1993,
+      "checkedEquationStatements": 2110,
+      "jump": 348,
       "cbt": 600,
-      "cbtChoice": 302,
-      "cbtTyped": 298
+      "cbtChoice": 343,
+      "cbtTyped": 257
     }
   ],
   "kinds": {
@@ -187,17 +207,20 @@
     "applied": 7948,
     "cbt": 7847
   },
+  "tiers": {
+    "jump": 5617
+  },
   "phraseFlags": [],
   "scopeFlags": [],
   "answerIssues": [],
   "explanationAnswerFlags": [],
-  "directEquationChecks": 8612,
+  "directEquationChecks": 7572,
   "directEquationIssues": [],
   "sessionAuditFailures": [],
   "choiceBalanceFailures": [],
   "answerFormatChoices": {
-    "time": 103,
-    "remainder": 205,
+    "time": 130,
+    "remainder": 225,
     "packedRemainder": 0
   },
   "rolloverAudit": {

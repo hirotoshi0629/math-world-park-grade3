@@ -9,7 +9,7 @@ vm.runInThisContext(fs.readFileSync(__dirname + '/question-engine.js', 'utf8'), 
 vm.runInThisContext(fs.readFileSync(__dirname + '/progress-store.js', 'utf8'), { filename: 'progress-store.js' });
 
 const prohibited = [/以上|以下|未満/, /被除数|乗数|除数|被乗数/, /undefined|NaN|\[object Object\]/, /\d+十|14十/, /\bPは\b/];
-const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
+const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, tiers: { jump: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
 const stableShuffle = (items) => [...items];
 const indexSource = fs.readFileSync(__dirname + '/index.html', 'utf8');
 const triangleDescription = /\['三角形','図形アトリエ','([^']+)'\]/.exec(indexSource)?.[1] || '';
@@ -23,7 +23,7 @@ for (let unit = 0; unit < 20; unit += 1) {
   const cbt = window.questionEngine.selectSession(items, new Set(), 'cbt', score, stableShuffle).questions;
   const seen = new Set(items.slice(0, 10).map((q) => q.id));
   const unseenFirst = window.questionEngine.selectSession(items, seen, 'regular', score, stableShuffle).questions;
-  if (regular.length !== 10 || new Set(regular.map((q) => q.id)).size !== 10 || regular.filter((q) => q.kind === 'basic').length !== 6 || regular.filter((q) => q.kind === 'applied').length !== 2 || regular.filter((q) => q.kind === 'cbt').length !== 2) {
+  if (regular.length !== 10 || new Set(regular.map((q) => q.id)).size !== 10 || regular.filter((q) => q.kind === 'basic').length !== 6 || regular.filter((q) => q.kind === 'applied').length !== 2 || regular.filter((q) => q.kind === 'cbt').length !== 2 || regular.filter((q) => q.tier === 'jump').length !== 1) {
     summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'regular composition' });
   }
   if (cbt.length !== 10 || cbt.some((q) => q.kind !== 'cbt') || new Set(cbt.map((q) => q.id)).size !== 10) {
@@ -35,12 +35,15 @@ for (let unit = 0; unit < 20; unit += 1) {
   const cbtItems = items.filter((q) => q.kind === 'cbt');
   const cbtChoiceCount = cbtItems.filter((q) => q.choices).length;
   const cbtTypedCount = cbtItems.length - cbtChoiceCount;
-  const unitSummary = { unit: unit + 1, questions: items.length, uniquePrompts: engineAudit.uniquePrompts, checkedEquationStatements: engineAudit.checkedEquationStatements, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount };
+  const jumpItems = items.filter((q) => q.tier === 'jump');
+  if (!jumpItems.length || jumpItems.some((q) => q.kind !== 'applied')) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'jump coverage' });
+  const unitSummary = { unit: unit + 1, questions: items.length, uniquePrompts: engineAudit.uniquePrompts, checkedEquationStatements: engineAudit.checkedEquationStatements, jump: jumpItems.length, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount };
   summary.units.push(unitSummary);
   if ([2, 4, 9].includes(unit + 1) && (cbtChoiceCount / cbtItems.length < 0.2 || cbtTypedCount / cbtItems.length < 0.2)) summary.choiceBalanceFailures.push({ unit: unit + 1, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount });
   summary.total += items.length;
   for (const q of items) {
     summary.kinds[q.kind] += 1;
+    if (q.tier === 'jump') summary.tiers.jump += 1;
     if (!q.choices) {
       const clean = (value) => String(value).replace(/[，,\s]/g, '');
       const answerText = clean(q.answer);
