@@ -271,7 +271,7 @@
       "cbt": 90,
       "cbtChoice": 45,
       "cbtTyped": 45,
-      "cbtApplied": 0
+      "cbtApplied": 86
     },
     {
       "unit": 17,
@@ -358,6 +358,7 @@
   "directEquationIssues": [],
   "sessionAuditFailures": [],
   "choiceBalanceFailures": [],
+  "choiceOrderFailures": [],
   "answerFormatChoices": {
     "time": 140,
     "remainder": 200,

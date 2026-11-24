@@ -9,7 +9,7 @@ vm.runInThisContext(fs.readFileSync(__dirname + '/question-engine.js', 'utf8'), 
 vm.runInThisContext(fs.readFileSync(__dirname + '/progress-store.js', 'utf8'), { filename: 'progress-store.js' });
 
 const prohibited = [/以上|以下|未満/, /被除数|乗数|除数|被乗数/, /undefined|NaN|\[object Object\]/, /\d+十|14十/, /\bPは\b/];
-const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, tiers: { jump: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
+const summary = { total: 0, units: [], kinds: { basic: 0, applied: 0, cbt: 0 }, tiers: { jump: 0 }, phraseFlags: [], scopeFlags: [], answerIssues: [], explanationAnswerFlags: [], directEquationChecks: 0, directEquationIssues: [], sessionAuditFailures: [], choiceBalanceFailures: [], choiceOrderFailures: [], answerFormatChoices: { time: 0, remainder: 0, packedRemainder: 0 }, rolloverAudit: null, progressAudit: null, feedbackAudit: null, persistenceAudit: null, compositeInputAudit: null };
 const stableShuffle = (items) => [...items];
 const indexSource = fs.readFileSync(__dirname + '/index.html', 'utf8');
 const triangleDescription = /\['三角形','図形アトリエ','([^']+)'\]/.exec(indexSource)?.[1] || '';
@@ -29,7 +29,7 @@ for (let unit = 0; unit < 20; unit += 1) {
   if (cbt.length !== 10 || cbt.some((q) => q.kind !== 'cbt') || new Set(cbt.map((q) => q.id)).size !== 10) {
     summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT selection' });
   }
-  if (unit !== 15 && cbt.filter((q) => q.skill.startsWith('CBT・活用')).length < 3) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT set includes applied questions' });
+  if (cbt.filter((q) => q.skill.startsWith('CBT・活用')).length < 3) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT set includes applied questions' });
   if (unit !== 15 && regular.filter((q) => q.kind === 'cbt' && q.skill.startsWith('CBT・活用')).length < 1) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'regular set includes an applied CBT question' });
   if (unseenFirst.length !== 10 || unseenFirst.some((q) => seen.has(q.id))) {
     summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'unseen priority' });
@@ -38,7 +38,7 @@ for (let unit = 0; unit < 20; unit += 1) {
   const cbtChoiceCount = cbtItems.filter((q) => q.choices).length;
   const cbtTypedCount = cbtItems.length - cbtChoiceCount;
   const cbtAppliedCount = cbtItems.filter((q) => q.skill.startsWith('CBT・活用')).length;
-  if (unit !== 15 && cbtAppliedCount < cbtItems.length * 0.15) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT applied-question coverage', cbtApplied: cbtAppliedCount, cbtTotal: cbtItems.length });
+  if (cbtAppliedCount < cbtItems.length * 0.15) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'CBT applied-question coverage', cbtApplied: cbtAppliedCount, cbtTotal: cbtItems.length });
   const jumpItems = items.filter((q) => q.tier === 'jump');
   if (!jumpItems.length || jumpItems.some((q) => q.kind !== 'applied')) summary.sessionAuditFailures.push({ unit: unit + 1, mode: 'jump coverage' });
   const unitSummary = { unit: unit + 1, questions: items.length, uniquePrompts: engineAudit.uniquePrompts, checkedEquationStatements: engineAudit.checkedEquationStatements, jump: jumpItems.length, regular: { basic: regular.filter((q) => q.kind === 'basic').length, applied: regular.filter((q) => q.kind === 'applied').length, cbt: regular.filter((q) => q.kind === 'cbt').length, jump: regular.filter((q) => q.tier === 'jump').length }, cbt: cbtItems.length, cbtChoice: cbtChoiceCount, cbtTyped: cbtTypedCount, cbtApplied: cbtAppliedCount };
@@ -97,6 +97,8 @@ for (let unit = 0; unit < 20; unit += 1) {
       if (/^\d+箱、\d+こあまり$/.test(q.correctValue || '')) summary.answerFormatChoices.packedRemainder += 1;
     }
     if (q.choices) {
+      const letters = q.choices.map(([letter]) => String(letter));
+      if (letters.join('') !== 'ABCD') summary.choiceOrderFailures.push({ unit: unit + 1, id: q.id, letters });
       const selected = q.choices.find((choice) => String(choice[0]) === String(q.answer));
       if (!selected || (q.correctValue !== undefined && String(selected[1]) !== String(q.correctValue))) {
         summary.answerIssues.push({ unit: unit + 1, id: q.id, prompt: q.prompt });
@@ -170,4 +172,4 @@ summary.compositeInputAudit = {
   ordinaryTextStaysText: window.questionEngine.parseCompositeAnswer('二等辺三角形') === null,
 };
 console.log(JSON.stringify(summary, null, 2));
-if (summary.total !== 40000 || summary.phraseFlags.length || summary.scopeFlags.length || summary.answerIssues.length || summary.explanationAnswerFlags.length || summary.directEquationIssues.length || summary.sessionAuditFailures.length || summary.choiceBalanceFailures.length || Object.values(summary.rolloverAudit).some((ok) => !ok) || Object.values(summary.progressAudit).some((ok) => !ok) || Object.values(summary.feedbackAudit).some((ok) => !ok) || Object.values(summary.persistenceAudit).some((ok) => !ok) || Object.values(summary.compositeInputAudit).some((ok) => !ok)) process.exitCode = 1;
+if (summary.total !== 40000 || summary.phraseFlags.length || summary.scopeFlags.length || summary.answerIssues.length || summary.explanationAnswerFlags.length || summary.directEquationIssues.length || summary.sessionAuditFailures.length || summary.choiceBalanceFailures.length || summary.choiceOrderFailures.length || Object.values(summary.rolloverAudit).some((ok) => !ok) || Object.values(summary.progressAudit).some((ok) => !ok) || Object.values(summary.feedbackAudit).some((ok) => !ok) || Object.values(summary.persistenceAudit).some((ok) => !ok) || Object.values(summary.compositeInputAudit).some((ok) => !ok)) process.exitCode = 1;
